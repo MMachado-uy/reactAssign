@@ -1,0 +1,12 @@
+#Venues #addVenue {
+    margin-top: 16px;
+}
+
+#Venues input[type=button] {
+    background-color: lightgrey;
+    border: none;
+    padding: 16px 16px;
+    text-decoration: none;
+    margin: 0 16px;
+    cursor: pointer;
+  }

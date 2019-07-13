@@ -1,0 +1,19 @@
+#Menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+#Menu li {
+    cursor: pointer;
+    border-bottom: 1px solid white;
+    display: inline-block;
+    padding: 16px;
+}
+
+#Menu li.active {
+    border-bottom: 1px solid black;
+}
+
+#Menu li:hover {
+    background-color: lightgray;
+}
