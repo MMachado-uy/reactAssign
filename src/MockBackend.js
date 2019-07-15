@@ -28,7 +28,6 @@ const MockBackend = {
             throw new Error('Client name is missing');
         }
         client.id = _.max(Clients.map(c => c.id)) + 1;
-        client.favoriteVenues = [];
         Clients.push(client);
         return client;
     },
