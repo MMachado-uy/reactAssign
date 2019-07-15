@@ -49,7 +49,7 @@ class Venues extends Component {
                         </tbody>
                     </table>
                 </div>
-                <div id="addVenue">
+                <div className="btn-bottom">
                     <input type="text" id="newVenue" onChange={this.handleChange} />
                     <input type="button" value="Add venue" onClick={this.handleSubmit} />
                 </div>

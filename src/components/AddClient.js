@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import './AddClient.css';
+
 import _ from 'lodash';
 
 class AddClient extends Component {
@@ -74,30 +76,60 @@ class AddClient extends Component {
             <div id="AddClient">
                 <h1>Add New Client</h1>
                 <div>
-                    <label>
-                        Name:
-                        <input type="text" id="firstName" onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Last Name:
-                        <input type="text" id="lastName" onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Username:
-                        <input type="text" id="name" onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Age:
-                        <input type="text" id="age" onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Email:
-                        <input type="text" id="email" onChange={this.handleChange} />
-                    </label>
-                    {venues.map((venue, idx) => (
-                        <div key={idx}><input type="checkbox" id={`fav-${venue.id}`} value={venue.name} onChange={this.handleChange} />{venue.name}</div>
-                    ))}
-                    <input type="button" value="Add client" onClick={this.handleSubmit} /> 
+                    <table border="0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label htmlFor="firstName">Name:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="firstName" onChange={this.handleChange} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label htmlFor="lastName">Last Name:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="lastName" onChange={this.handleChange} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label htmlFor="name">Username:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="name" onChange={this.handleChange} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label htmlFor="age">Age:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="age" onChange={this.handleChange} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label htmlFor="email">Email:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="email" onChange={this.handleChange} />
+                                </td>
+                            </tr>
+                            {venues.map((venue, idx) => (
+                                <tr key={idx}>
+                                    <td colSpan="2">
+                                        <input type="checkbox" id={`fav-${venue.id}`} value={venue.name} onChange={this.handleChange} />{venue.name}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <div className="btn-bottom">
+                        <input type="button" value="Add client" onClick={this.handleSubmit} />
+                    </div>
                 </div>
             </div>
         )
