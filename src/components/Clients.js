@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import './Clients.css';
+
 import _ from 'lodash';
 
 class Clients extends Component {
@@ -43,6 +45,9 @@ class Clients extends Component {
                             ))}
                         </tbody>
                     </table>
+                </div>
+                <div id="addClient">
+                    <input type="button" value="Add New Client" onClick={() => this.props.goTo('addClient')}/>
                 </div>
             </div>
         )
