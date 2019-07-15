@@ -6,3 +6,13 @@
 #Clients input[type=number] {
     width: 64px;
 }
+
+
+#Clients .btn-clear {
+    background-color: white;
+    border: 1px solid;
+  }
+  
+#Clients .btn-small {
+    padding: 6px 8px;
+  }

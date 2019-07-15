@@ -18,33 +18,22 @@ class App extends Component {
             sections: ['clients', 'venues', 'addClient']
         }
 
-        this.goTo      = this.goTo.bind(this);
-        this.addVenue  = this.addVenue.bind(this);
-        this.addClient = this.addClient.bind(this);
+        this.goTo       = this.goTo.bind(this);
+        this.addVenue   = this.addVenue.bind(this);
+        this.addClient  = this.addClient.bind(this);
+        this.favVenue   = this.favVenue.bind(this);
+        this.unfavVenue = this.unfavVenue.bind(this);
     }
 
-    renderComponent() {
-        let { currSection, clients, venues } = this.state;
-
-        switch(currSection) {
-            case 'clients':
-                return <Clients clients={clients} venues={venues} goTo={this.goTo}/>;
-            case 'addClient':
-                return <AddClient venues={venues} goTo={this.goTo} addClient={this.addClient}/>
-            case 'venues':
-                return <Venues venues={venues} addVenue={this.addVenue}/>
-            case 'coso':
-                return <div>Hola</div>;
-            default:
-                return <div>Woops! Something went wrong!</div>
-        }
-    }
+    // App logic
 
     goTo(section) {
         this.setState({
             currSection: section
-        }, () => {})
+        }, () => {});
     }
+
+    // Backend calls
 
     addVenue(newVenue) {
 
@@ -53,7 +42,7 @@ class App extends Component {
     
             this.setState({
                 venues: MockBackend.listVenues()
-            }, () => {})
+            }, () => {});
         }
     }
 
@@ -64,7 +53,48 @@ class App extends Component {
 
             this.setState({
                 client: MockBackend.listClients()
-            }, () => {})
+            }, () => {});
+        }
+    }
+
+    favVenue(client, venueId) {
+        if (client !== null && venueId !== null) {
+            MockBackend.addFavoriteVenueToClient(client.id, venueId);
+
+            this.setState({
+                clients: MockBackend.listClients()
+            }, () => {});
+        }
+    }
+
+    unfavVenue(client, venueId) {
+        if (client !== null && venueId !== null) {
+            MockBackend.removeFavoriteVenueFromClient(client.id, venueId);
+
+            this.setState({
+                clients: MockBackend.listClients()
+            }, () => {});
+        }
+    }
+
+    // Renders
+
+    renderComponent() {
+        let { currSection, clients, venues } = this.state;
+
+        switch(currSection) {
+            case 'clients':
+                return <Clients clients={clients} 
+                                venues={venues} 
+                                goTo={this.goTo}
+                                favVenue={this.favVenue}
+                                unfavVenue={this.unfavVenue} />;
+            case 'addClient':
+                return <AddClient venues={venues} goTo={this.goTo} addClient={this.addClient}/>
+            case 'venues':
+                return <Venues venues={venues} addVenue={this.addVenue}/>
+            default:
+                return <div>Woops! Something went wrong!</div>
         }
     }
 

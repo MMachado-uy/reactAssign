@@ -13,6 +13,8 @@ class Venues extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // App logic
+
     handleChange(event) {
         let { value } = event.target
 
@@ -26,6 +28,8 @@ class Venues extends Component {
 
         this.props.addVenue(newVenue);
     }
+
+    // Renders
 
     render() {
         let { venues } = this.props;
