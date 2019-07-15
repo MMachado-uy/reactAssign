@@ -18,8 +18,8 @@ class Menu extends Component {
                     {sections.map( (section, idx) => (
                         <li key={idx}
                             className={(section === currSection) ? 'active' : ''}
-                            onClick={() => this.props.menuHandler(section)}>
-                            {_.capitalize(section)}
+                            onClick={() => this.props.goTo(section)}>
+                            {_.startCase(section)}
                         </li>
                     ))}
                 </ul>

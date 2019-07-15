@@ -5,6 +5,7 @@ import MockBackend from './MockBackend';
 
 import Menu from './components/Menu';
 import Clients from './components/Clients';
+import AddClient from './components/AddClient';
 import Venues from './components/Venues';
 
 class App extends Component {
@@ -14,11 +15,12 @@ class App extends Component {
             currSection: 'clients',
             clients: MockBackend.listClients(),
             venues: MockBackend.listVenues(),
-            sections: ['clients', 'venues']
+            sections: ['clients', 'venues', 'addClient']
         }
 
-        this.menuHandler = this.menuHandler.bind(this);
-        this.addVenue = this.addVenue.bind(this);
+        this.goTo      = this.goTo.bind(this);
+        this.addVenue  = this.addVenue.bind(this);
+        this.addClient = this.addClient.bind(this);
     }
 
     renderComponent() {
@@ -26,7 +28,9 @@ class App extends Component {
 
         switch(currSection) {
             case 'clients':
-                return <Clients clients={clients} venues={venues}/>;
+                return <Clients clients={clients} venues={venues} goTo={this.goTo}/>;
+            case 'addClient':
+                return <AddClient venues={venues} goTo={this.goTo} addClient={this.addClient}/>
             case 'venues':
                 return <Venues venues={venues} addVenue={this.addVenue}/>
             case 'coso':
@@ -36,7 +40,7 @@ class App extends Component {
         }
     }
 
-    menuHandler(section) {
+    goTo(section) {
         this.setState({
             currSection: section
         }, () => {})
@@ -53,12 +57,23 @@ class App extends Component {
         }
     }
 
+    addClient(newClient) {
+
+        if (newClient !== '' || newClient != null) {
+            MockBackend.addClient(newClient);
+
+            this.setState({
+                client: MockBackend.listClients()
+            }, () => {})
+        }
+    }
+
     render() {
         let { sections, currSection } = this.state;
         let menuProps = {
             currSection,
             sections,
-            menuHandler: this.menuHandler
+            goTo: this.goTo
         }
 
         return (
